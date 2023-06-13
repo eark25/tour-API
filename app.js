@@ -20,6 +20,9 @@ const compression = require('compression');
 // Start express app
 const app = express();
 
+// heroku https deployment
+// app.enable('trust proxy');
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
