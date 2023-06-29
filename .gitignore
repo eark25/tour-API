@@ -1,3 +1,8 @@
 node_modules/
 *.env
 .cache/
+.eslintrc.json
+.prettierrc
+Procfile
+swagger.yaml
+public/*.html

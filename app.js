@@ -42,43 +42,6 @@ app.options('*', cors());
 // Serving static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Set security HTTP Headers
-// app.use(
-//   helmet.contentSecurityPolicy({
-//     directives: {
-//       defaultSrc: ["'self'", 'data:', 'blob:'],
-
-//       baseUri: ["'self'"],
-
-//       fontSrc: ["'self'", 'https:', 'data:'],
-
-//       scriptSrc: [
-//         "'self'",
-//         'https://*.cloudflare.com',
-//         'https://*.stripe.com',
-//         'https://*.mapbox.com',
-//         'data:',
-//       ],
-
-//       frameSrc: ["'self'", 'https://*.stripe.com'],
-
-//       objectSrc: ["'none'"],
-
-//       styleSrc: ["'self'", 'https:', 'unsafe-inline'],
-
-//       workerSrc: ["'self'", 'data:', 'blob:'],
-
-//       childSrc: ["'self'", 'blob:'],
-
-//       imgSrc: ["'self'", 'data:', 'blob:'],
-
-//       connectSrc: ["'self'", 'blob:', 'https://*.mapbox.com'],
-
-//       upgradeInsecureRequests: [],
-//     },
-//   })
-// );
-
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
