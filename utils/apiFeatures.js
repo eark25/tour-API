@@ -35,8 +35,19 @@ class APIFeatures {
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(',').join(' ');
       this.query = this.query.select(fields);
+      if (this.query._fields.guides) {
+        this.query.populate({
+          path: 'guides',
+          select: '-__v -passwordChangedAt',
+        });
+      }
+      if (!this.query._fields.durationWeeks)
+        this.query.lean().select('-durationWeeks');
     } else {
-      this.query = this.query.select('-__v');
+      this.query = this.query.select('-__v').populate({
+        path: 'guides',
+        select: '-__v -passwordChangedAt',
+      });
     }
 
     return this;

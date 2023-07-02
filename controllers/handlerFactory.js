@@ -65,17 +65,21 @@ exports.getOne = (Model, popOptions) =>
     });
   });
 
-exports.getAll = (Model) =>
+exports.getAll = (Model, popOptions) =>
   catchAsync(async (req, res, next) => {
     // To allow for nested GET reviews on tour (hack)
     let filter = {}; // find all if the path is only /reviews
     if (req.params.tourId) filter = { tour: req.params.tourId }; // find by tourId if the path is /:tourId/reviews
     // EXECUTE QUERY
-    const features = new APIFeatures(Model.find(filter), req.query)
+    let query = Model.find(filter);
+    if (popOptions) query = query.populate(popOptions);
+
+    const features = new APIFeatures(query, req.query)
       .filter()
       .sort()
       .limitFields()
       .paginate();
+
     // const doc = await features.query.explain();
     const doc = await features.query;
 
