@@ -35,7 +35,10 @@ class APIFeatures {
     if (this.queryString.fields) {
       const fields = this.queryString.fields.split(',').join(' ');
       this.query = this.query.select(fields);
-      if (this.query._fields.guides) {
+      if (
+        this.query._fields.guides &&
+        this.query.mongooseCollection.modelName === 'Tour'
+      ) {
         this.query.populate({
           path: 'guides',
           select: '-__v -passwordChangedAt',
@@ -44,10 +47,13 @@ class APIFeatures {
       if (!this.query._fields.durationWeeks)
         this.query.lean().select('-durationWeeks');
     } else {
-      this.query = this.query.select('-__v').populate({
-        path: 'guides',
-        select: '-__v -passwordChangedAt',
-      });
+      this.query = this.query.select('-__v');
+      if (this.query.schema.obj.guides) {
+        this.query = this.query.populate({
+          path: 'guides',
+          select: '-__v -passwordChangedAt',
+        });
+      }
     }
 
     return this;
