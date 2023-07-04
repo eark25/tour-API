@@ -26,10 +26,13 @@ const bookingSchema = new mongoose.Schema({
 });
 
 bookingSchema.pre(/^find/, function (next) {
-  this.populate('user').populate({
-    path: 'tour',
-    select: 'name',
-  });
+  this.populate('user')
+    .populate({
+      path: 'tour',
+      select: 'name',
+    })
+    .lean()
+    .select('-durationWeeks'); // durationWeeks will be null if duration is not also in query result
   next();
 });
 

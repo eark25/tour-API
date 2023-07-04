@@ -11,15 +11,12 @@ const router = express.Router({ mergeParams: true }); // give access to :tourId 
 
 router.use(authController.protect);
 
-router
-  .route('/')
-  .get(reviewController.getAllReviews)
-  .post(
-    authController.restrictTo('user'),
-    reviewController.setTourUserIds,
-    bookingController.isBooked,
-    reviewController.createReview
-  );
+router.route('/').get(reviewController.getAllReviews).post(
+  authController.restrictTo('user'),
+  reviewController.setTourUserIds,
+  // bookingController.isBooked,
+  reviewController.createReview
+);
 
 router
   .route('/:id')
