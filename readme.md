@@ -4,8 +4,8 @@ Built using: Node.js, Express, MongoDB, Mongoose, etc.
 
 ## Documentation
 
-I have briefly explained the usage of main API's endpoints in Postman documentation below.
-[View Postman Documentation] https://documenter.getpostman.com/view/27418556/2s93sZ5DYZ#e7abbd66-5d04-41b2-8ae7-753a7a8fdd1c
+I have briefly explained the usage of main API's endpoints in Postman documentation below.\
+[View Postman Documentation] https://documenter.getpostman.com/view/27418556/2s93sZ5DYZ
 
 ### Key Note
 
